@@ -3,170 +3,234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PROTEGIDAS | Cuidando sueños</title>
+    <title>PROTEGIDAS | IA contra la explotación infantil</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Lexend:wght@700;900&display=swap" rel="stylesheet">
     <style>
-        :root { 
-            --p-pink: #FFB7CE; 
-            --p-lilac: #E0BBE4; 
-            --p-mint: #B2F2BB;
-            --p-soft-bg: #FFF9FB;
-            --p-text: #5D576B;
-        }
+        :root { --p-rose: #FF8BA7; --p-violet: #7161EF; --p-dark: #1A1D23; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; background: #FDFBFF; }
+        .lexend { font-family: 'Lexend', sans-serif; }
         
-        body { 
-            background: var(--p-soft-bg); 
-            color: var(--p-text); 
-            font-family: 'Quicksand', sans-serif;
-            overflow-x: hidden;
-        }
-
-        .kawaii-card { 
-            background: white; 
-            border-radius: 35px; 
-            box-shadow: 0 15px 0 rgba(255, 183, 206, 0.2);
-            border: 3px solid #FFEDF3;
-        }
-
-        .btn-kawaii {
-            background: linear-gradient(135deg, #FFB7CE 0%, #FF9AAD 100%);
-            color: white;
-            border-radius: 20px;
-            padding: 12px 25px;
-            font-weight: 700;
-            box-shadow: 0 6px 0 #F08DA3;
-            transition: all 0.2s;
-        }
-        .btn-kawaii:active { transform: translateY(4px); box-shadow: 0 2px 0 #F08DA3; }
-
-        .avatar-svg { filter: drop-shadow(0 5px 10px rgba(255, 183, 206, 0.4)); }
+        /* Animaciones */
+        .fade-in { animation: fadeIn 0.8s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         
-        .pulse-heart { animation: heartBeat 1.5s infinite; }
-        @keyframes heartBeat {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
+        /* Glassmorphism */
+        .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.3); }
+        .bento-card { border-radius: 32px; background: white; transition: all 0.3s; border: 1px solid #F0F0F0; }
+        .bento-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
 
-        /* Indicadores Biométricos suaves */
-        .bio-pill { background: #FFF; border: 2px solid var(--p-lilac); border-radius: 50px; }
+        /* Scanner Effect */
+        .scan-line { width: 100%; height: 2px; background: var(--p-rose); position: absolute; animation: scanning 3s infinite linear; filter: blur(2px); }
+        @keyframes scanning { 0% { top: 10%; opacity: 0; } 50% { opacity: 1; } 100% { top: 90%; opacity: 0; } }
     </style>
 </head>
-<body>
+<body class="overflow-x-hidden">
 
-    <div id="auth-screen" class="fixed inset-0 z-[100] bg-white flex flex-col items-center justify-center p-8">
-        <div class="mb-8 text-center">
-            <div class="w-24 h-24 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4 pulse-heart">
-                <svg width="50" height="50" viewBox="0 0 24 24" fill="#FFB7CE"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+    <div id="landing-page" class="relative">
+        <nav class="flex justify-between items-center px-8 md:px-20 py-6 sticky top-0 bg-white/80 backdrop-blur-md z-[50]">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-[#FF8BA7] rounded-xl flex items-center justify-center text-white font-black">P</div>
+                <span class="lexend text-2xl tracking-tighter uppercase">Protegidas</span>
             </div>
-            <h1 class="text-4xl font-black text-[#FF85A1] tracking-tight" style="font-family: 'Nunito';">PROTEGIDAS</h1>
-            <p class="text-sm opacity-60 font-semibold italic">Juntas, seguras y estudiando.</p>
-        </div>
-
-        <div id="auth-box" class="w-full max-w-sm space-y-4">
-            <div id="login-view" class="space-y-4">
-                <input type="text" id="user-id" placeholder="Tu nombre o correo ✨" class="w-full p-4 rounded-3xl bg-pink-50 border-none outline-none focus:ring-2 ring-pink-300">
-                <input type="password" id="user-pass" placeholder="Tu clave secreta 🔑" class="w-full p-4 rounded-3xl bg-pink-50 border-none outline-none focus:ring-2 ring-pink-300">
-                <button onclick="startApp()" class="w-full btn-kawaii text-lg">¡Entrar a mi mundo!</button>
-                <button onclick="toggleAuth('reg')" class="w-full text-pink-400 font-bold text-sm mt-4">¿Eres nueva? Únete aquí 🌸</button>
+            <div class="hidden md:flex gap-8 font-semibold text-sm text-gray-500">
+                <a href="#mision" class="hover:text-pink-500">Misión</a>
+                <a href="#tecnologia" class="hover:text-pink-500">Tecnología</a>
+                <a href="#impacto" class="hover:text-pink-500">Impacto</a>
             </div>
+            <button onclick="showAuth()" class="bg-black text-white px-8 py-3 rounded-full font-bold text-sm hover:scale-105 transition active:scale-95">INICIAR DEMO</button>
+        </nav>
 
-            <div id="reg-view" class="hidden space-y-4">
-                <h3 class="font-bold text-pink-500">Formar parte de Protegidas</h3>
-                <input type="text" placeholder="Nombre completo" class="w-full p-4 rounded-3xl bg-purple-50 border-none">
-                <select class="w-full p-4 rounded-3xl bg-purple-50 border-none text-gray-400">
-                    <option>Soy Hija (Estudiante)</option>
-                    <option>Soy Madre (Emprendedora)</option>
-                </select>
-                <button onclick="alert('Registro enviado a validación comunitaria')" class="w-full btn-kawaii">Crear cuenta</button>
-                <button onclick="toggleAuth('login')" class="text-xs opacity-50 underline">Ya tengo cuenta</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="main-app" class="hidden h-screen flex flex-col">
-        
-        <header class="p-6 flex justify-between items-center bg-white/50 backdrop-blur-md border-b-2 border-pink-100">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-pink-200 rounded-2xl overflow-hidden">
-                    <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=Felicia" alt="Avatar">
-                </div>
-                <div>
-                    <h2 class="font-bold text-sm" id="welcome-name">Hola, Lucía ✨</h2>
-                    <p class="text-[10px] text-green-500 font-bold uppercase tracking-widest">● Nivel de Seguridad: Alto</p>
+        <header class="px-8 md:px-20 py-20 grid lg:grid-cols-2 gap-12 items-center">
+            <div class="fade-in">
+                <span class="bg-pink-100 text-pink-600 px-4 py-2 rounded-full text-xs font-bold tracking-widest uppercase">Perú • IA Social</span>
+                <h1 class="lexend text-6xl md:text-7xl mt-6 leading-tight">Cuidando el <span class="text-pink-400 italic">futuro</span> de nuestras niñas.</h1>
+                <p class="mt-8 text-xl text-gray-500 leading-relaxed max-w-lg">La primera plataforma que combina biometría preventiva y soporte laboral para erradicar la explotación infantil.</p>
+                <div class="mt-10 flex gap-4">
+                    <button onclick="showAuth()" class="bg-[#7161EF] text-white px-10 py-5 rounded-2xl font-black shadow-xl shadow-indigo-100 hover:bg-indigo-600 transition">EXPLORAR PLATAFORMA</button>
+                    <button class="px-10 py-5 rounded-2xl font-bold border border-gray-200">Ver Misión</button>
                 </div>
             </div>
-            <div class="flex gap-2">
-                <button class="w-10 h-10 bio-pill flex items-center justify-center">🔔</button>
-                <button onclick="location.reload()" class="w-10 h-10 bio-pill flex items-center justify-center">🏠</button>
+            <div class="relative flex justify-center fade-in" style="animation-delay: 0.2s;">
+                <div class="w-full max-w-md aspect-square bg-gradient-to-tr from-pink-200 to-indigo-100 rounded-[60px] flex items-center justify-center shadow-2xl overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?q=80&w=2070&auto=format&fit=crop" class="opacity-80 grayscale hover:grayscale-0 transition duration-1000" alt="Niña estudiando">
+                </div>
             </div>
         </header>
 
-        <main class="flex-1 overflow-y-auto p-6 space-y-6 pb-28">
+        <section id="mision" class="px-8 md:px-20 py-20 bg-gray-50">
+            <h2 class="lexend text-4xl mb-12">Nuestra Estrategia Integral</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bento-card p-10">
+                    <div class="text-4xl mb-4">🛡️</div>
+                    <h3 class="font-bold text-xl mb-3">IA Preventiva</h3>
+                    <p class="text-gray-500 text-sm">Analizamos patrones de asistencia y comportamiento para detectar riesgos de deserción antes de que ocurran.</p>
+                </div>
+                <div class="bento-card p-10">
+                    <div class="text-4xl mb-4">🧬</div>
+                    <h3 class="font-bold text-xl mb-3">Monitoreo Bio</h3>
+                    <p class="text-gray-500 text-sm">Sistemas de verificación no invasivos que aseguran la presencia y bienestar de la menor en tiempo real.</p>
+                </div>
+                <div class="bento-card p-10">
+                    <div class="text-4xl mb-4">💼</div>
+                    <h3 class="font-bold text-xl mb-3">Bolsa Laboral</h3>
+                    <p class="text-gray-500 text-sm">Conectamos a las madres con empleos dignos y ferias locales para fortalecer la economía familiar.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="auth-layer" class="fixed inset-0 z-[100] bg-white/90 backdrop-blur-2xl hidden items-center justify-center p-6">
+        <div class="w-full max-w-xl bg-white p-12 rounded-[40px] shadow-2xl border border-pink-50 relative">
+            <button onclick="hideAuth()" class="absolute top-8 right-8 text-gray-300 hover:text-black font-bold">CERRAR</button>
             
-            <section class="kawaii-card p-8 flex flex-col items-center relative">
-                <h3 class="text-sm font-bold text-pink-400 mb-6 uppercase tracking-wider">Mi Estado Protector</h3>
-                
-                <svg viewBox="0 0 200 500" class="h-[300px] avatar-svg">
-                    <circle cx="100" cy="80" r="45" fill="#FFE0E9" stroke="#FFB7CE" stroke-width="4" /> <path d="M60 140 Q100 120 140 140 L150 350 Q100 370 50 350 Z" fill="#E0BBE4" stroke="#D199D9" stroke-width="4" /> <circle cx="100" cy="200" r="8" fill="#FFF" class="pulse-heart" /> <circle cx="100" cy="80" r="10" fill="rgba(255,255,255,0.5)" /> </svg>
+            <div id="login-form">
+                <h3 class="lexend text-3xl mb-2">Bienvenida de nuevo</h3>
+                <p class="text-gray-400 mb-8 font-medium">Accede al portal de protección integral.</p>
+                <div class="space-y-4">
+                    <input type="text" placeholder="ID de Operadora o Email" class="w-full bg-gray-50 p-5 rounded-2xl outline-none focus:ring-2 ring-pink-100 transition">
+                    <input type="password" placeholder="Contraseña de acceso" class="w-full bg-gray-50 p-5 rounded-2xl outline-none focus:ring-2 ring-pink-100 transition">
+                    <button onclick="enterApp()" class="w-full bg-black text-white py-5 rounded-2xl font-black tracking-widest uppercase text-xs">Ingresar al Sistema</button>
+                    <p class="text-center text-sm font-bold text-gray-400 mt-6">¿Aún no eres parte? <button onclick="toggleAuth('reg')" class="text-pink-500 underline">Crea tu perfil aquí</button></p>
+                </div>
+            </div>
 
-                <div class="grid grid-cols-2 gap-4 w-full mt-8">
-                    <div class="bio-pill p-3 text-center">
-                        <p class="text-[10px] opacity-50 uppercase">Asistencia</p>
-                        <p class="font-bold text-pink-500 text-sm">98% ✅</p>
+            <div id="reg-form" class="hidden">
+                <h3 class="lexend text-3xl mb-2">Únete a Protegidas</h3>
+                <p class="text-gray-400 mb-8 font-medium">Inicia el proceso de validación biométrica.</p>
+                <div class="space-y-4">
+                    <input type="text" placeholder="Nombre completo" class="w-full bg-gray-50 p-5 rounded-2xl outline-none">
+                    <select class="w-full bg-gray-50 p-5 rounded-2xl outline-none text-gray-400">
+                        <option>Soy Madre / Tutora</option>
+                        <option>Soy Supervisor Regional</option>
+                    </select>
+                    <input type="password" placeholder="Definir contraseña fuerte" class="w-full bg-gray-50 p-5 rounded-2xl outline-none">
+                    <button onclick="enterApp()" class="w-full bg-[#FF8BA7] text-white py-5 rounded-2xl font-black uppercase text-xs">Registrarme e Ingresar</button>
+                    <button onclick="toggleAuth('login')" class="w-full text-xs font-bold text-gray-300 mt-4 uppercase">Ya tengo cuenta</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="app-dashboard" class="fixed inset-0 z-[200] bg-[#F8F9FD] hidden flex-col md:flex-row p-6 gap-6">
+        <aside class="w-full md:w-72 bg-white rounded-[32px] p-8 flex flex-col justify-between shadow-sm border border-gray-100">
+            <div>
+                <div class="flex items-center gap-3 mb-12">
+                    <div class="w-10 h-10 bg-black rounded-xl flex items-center justify-center text-white font-black text-xl italic">P</div>
+                    <span class="lexend text-xl">DASHBOARD</span>
+                </div>
+                <nav class="space-y-2">
+                    <div class="flex items-center gap-4 p-4 bg-pink-50 text-pink-600 rounded-2xl font-bold cursor-pointer transition">
+                        <span>👤 Perfil Menor</span>
                     </div>
-                    <div class="bio-pill p-3 text-center">
-                        <p class="text-[10px] opacity-50 uppercase">Bienestar</p>
-                        <p class="font-bold text-purple-500 text-sm">Estable 🌸</p>
+                    <div class="flex items-center gap-4 p-4 text-gray-400 hover:bg-gray-50 rounded-2xl font-semibold cursor-pointer transition">
+                        <span>📊 Reportes IA</span>
+                    </div>
+                    <div class="flex items-center gap-4 p-4 text-gray-400 hover:bg-gray-50 rounded-2xl font-semibold cursor-pointer transition">
+                        <span>👩‍💼 Bolsa Madre</span>
+                    </div>
+                </nav>
+            </div>
+            <button onclick="location.reload()" class="flex items-center gap-3 p-4 text-red-400 font-bold hover:bg-red-50 rounded-2xl transition">
+                <span>🚪 Cerrar Sesión</span>
+            </button>
+        </aside>
+
+        <main class="flex-1 grid grid-cols-1 lg:grid-cols-3 gap-6 overflow-y-auto">
+            <div class="lg:col-span-2 bento-card p-12 flex flex-col items-center relative overflow-hidden bg-white">
+                <div class="scan-line"></div>
+                <div class="w-full flex justify-between items-start mb-8 z-10">
+                    <div>
+                        <h2 class="lexend text-4xl">Lucía F.</h2>
+                        <span class="text-xs font-black text-green-500 tracking-widest uppercase bg-green-50 px-3 py-1 rounded-full">Protección Activa</span>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-sm font-bold text-gray-300 uppercase">Bienestar General</p>
+                        <p class="text-4xl font-black text-pink-400">98%</p>
                     </div>
                 </div>
-            </section>
 
-            <section class="kawaii-card p-6 bg-gradient-to-r from-blue-50 to-white border-blue-100">
-                <h3 class="font-bold text-blue-400 mb-4 flex items-center gap-2">
-                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path d="M10.394 2.827a1 1 0 00-.788 0l-7 3a1 1 0 000 1.848l7 3a1 1 0 00.788 0l7-3a1 1 0 000-1.848l-7-3zM14 8.828l-.206.088-5.794 2.483-5.794-2.483L2 8.828v2.172a1 1 0 00.553.894l7 3a1 1 0 00.894 0l7-3a1 1 0 00.553-.894V8.828z"/></svg>
-                    Oportunidades para Mamá
-                </h3>
-                <div class="space-y-3">
-                    <div class="bg-white p-3 rounded-2xl border border-blue-100 text-xs shadow-sm">
-                        <p class="font-bold">Taller de Confección Local</p>
-                        <p class="opacity-60 text-[10px]">Vacantes: 3 • Apoyo escolar incluido</p>
+                <svg viewBox="0 0 200 500" class="h-[450px] relative z-10">
+                    <circle cx="100" cy="80" r="45" fill="none" stroke="#FF8BA7" stroke-width="2" />
+                    <path d="M60 130 L140 130 L155 320 L45 320 Z" fill="none" stroke="#FF8BA7" stroke-width="2" />
+                    <path d="M40 140 L20 280 M160 140 L180 280" stroke="#FF8BA7" stroke-width="2" />
+                    <path d="M75 330 L65 480 M125 330 L135 480" stroke="#FF8BA7" stroke-width="2" />
+                    <circle cx="100" cy="80" r="8" fill="#7161EF" class="animate-pulse" />
+                    <circle cx="100" cy="225" r="8" fill="#7161EF" class="animate-pulse" />
+                </svg>
+
+                <div class="grid grid-cols-2 gap-4 w-full mt-10 z-10">
+                    <div class="p-6 border border-gray-100 rounded-3xl bg-gray-50/50">
+                        <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Última Ubicación</p>
+                        <p class="font-bold">Institución Educativa Cusco - 14:30</p>
+                    </div>
+                    <div class="p-6 border border-gray-100 rounded-3xl bg-gray-50/50">
+                        <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Riesgo IA</p>
+                        <p class="font-bold text-green-500 uppercase">Sin anomalías detectadas</p>
                     </div>
                 </div>
-            </section>
+            </div>
 
+            <div class="flex flex-col gap-6">
+                <div class="bento-card p-8 bg-[#7161EF] text-white flex-1 flex flex-col">
+                    <h3 class="lexend text-2xl mb-6">Mamá Impulso</h3>
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center text-2xl font-bold">MF</div>
+                        <div>
+                            <p class="font-black">Martha Fernández</p>
+                            <p class="text-xs opacity-70 italic">Madre Beneficiaria</p>
+                        </div>
+                    </div>
+                    <div class="bg-white/10 p-5 rounded-2xl border border-white/10 mb-6">
+                        <p class="text-xs font-bold opacity-60 mb-1 tracking-widest uppercase">Microcrédito Actual</p>
+                        <p class="text-2xl font-black">S/ 450.00</p>
+                        <p class="text-[10px] opacity-50 mt-2">Próxima capacitación: Confección Textil (Mañana)</p>
+                    </div>
+                    <button class="mt-auto w-full py-4 bg-white text-[#7161EF] rounded-2xl font-black uppercase text-xs">Explorar Bolsa Laboral</button>
+                </div>
+
+                <div class="bento-card p-8 flex flex-col">
+                    <h3 class="text-sm font-black text-gray-300 uppercase tracking-widest mb-6 italic">IA Technical Status</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center text-sm font-semibold">
+                            <span>Offline Cloud Sync</span>
+                            <span class="text-green-500">100%</span>
+                        </div>
+                        <div class="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden">
+                            <div class="bg-green-500 h-full w-[100%]"></div>
+                        </div>
+                        <p class="text-[10px] text-gray-400 leading-tight">La plataforma está operando en modo Offline-First. Todos los datos están protegidos localmente.</p>
+                    </div>
+                </div>
+            </div>
         </main>
-
-        <nav class="fixed bottom-6 left-6 right-6 h-20 glass rounded-[30px] border-2 border-pink-200 flex justify-around items-center px-4">
-            <button class="flex flex-col items-center gap-1">
-                <span class="text-2xl">📖</span>
-                <span class="text-[9px] font-bold opacity-50">ESCUELA</span>
-            </button>
-            <button class="w-14 h-14 bg-pink-400 rounded-full flex items-center justify-center -translate-y-6 shadow-xl shadow-pink-200 border-4 border-white">
-                <span class="text-2xl">🛡️</span>
-            </button>
-            <button class="flex flex-col items-center gap-1">
-                <span class="text-2xl">👩‍👧</span>
-                <span class="text-[9px] font-bold opacity-50">FAMILIA</span>
-            </button>
-        </nav>
     </div>
 
     <script>
+        function showAuth() {
+            document.getElementById('auth-layer').style.display = 'flex';
+        }
+
+        function hideAuth() {
+            document.getElementById('auth-layer').style.display = 'none';
+        }
+
         function toggleAuth(view) {
-            document.getElementById('login-view').classList.toggle('hidden', view === 'reg');
-            document.getElementById('reg-view').classList.toggle('hidden', view === 'login');
+            document.getElementById('login-form').classList.toggle('hidden', view === 'reg');
+            document.getElementById('reg-form').classList.toggle('hidden', view === 'login');
         }
 
-        function startApp() {
-            document.getElementById('auth-screen').classList.add('hidden');
-            document.getElementById('main-app').classList.remove('hidden');
+        function enterApp() {
+            document.getElementById('auth-layer').classList.add('hidden');
+            document.getElementById('landing-page').classList.add('hidden');
+            document.getElementById('app-dashboard').classList.remove('hidden');
+            document.getElementById('app-dashboard').classList.add('flex');
         }
 
-        // Simulación offline-first
-        window.addEventListener('online', () => alert('✨ Sincronizando datos con la nube de Protegidas...'));
-        window.addEventListener('offline', () => console.log('🛡️ Modo Seguro Offline activado automáticamente.'));
+        // Simular efecto de carga en la demo
+        window.onload = () => {
+            console.log("PROTEGIDAS™ System initialized.");
+        };
     </script>
 </body>
 </html>
