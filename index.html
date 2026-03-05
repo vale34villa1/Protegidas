@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROTEGIDAS | Cuidando sueños</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root { 
+            --p-pink: #FFB7CE; 
+            --p-lilac: #E0BBE4; 
+            --p-mint: #B2F2BB;
+            --p-soft-bg: #FFF9FB;
+            --p-text: #5D576B;
+        }
+        
+        body { 
+            background: var(--p-soft-bg); 
+            color: var(--p-text); 
+            font-family: 'Quicksand', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .kawaii-card { 
+            background: white; 
+            border-radius: 35px; 
+            box-shadow: 0 15px 0 rgba(255, 183, 206, 0.2);
+            border: 3px solid #FFEDF3;
+        }
+
+        .btn-kawaii {
+            background: linear-gradient(135deg, #FFB7CE 0%, #FF9AAD 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 12px 25px;
+            font-weight: 700;
+            box-shadow: 0 6px 0 #F08DA3;
+            transition: all 0.2s;
+        }
+        .btn-kawaii:active { transform: translateY(4px); box-shadow: 0 2px 0 #F08DA3; }
+
+        .avatar-svg { filter: drop-shadow(0 5px 10px rgba(255, 183, 206, 0.4)); }
+        
+        .pulse-heart { animation: heartBeat 1.5s infinite; }
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Indicadores Biométricos suaves */
+        .bio-pill { background: #FFF; border: 2px solid var(--p-lilac); border-radius: 50px; }
+    </style>
+</head>
+<body>
+
+    <div id="auth-screen" class="fixed inset-0 z-[100] bg-white flex flex-col items-center justify-center p-8">
+        <div class="mb-8 text-center">
+            <div class="w-24 h-24 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4 pulse-heart">
+                <svg width="50" height="50" viewBox="0 0 24 24" fill="#FFB7CE"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
+            <h1 class="text-4xl font-black text-[#FF85A1] tracking-tight" style="font-family: 'Nunito';">PROTEGIDAS</h1>
+            <p class="text-sm opacity-60 font-semibold italic">Juntas, seguras y estudiando.</p>
+        </div>
+
+        <div id="auth-box" class="w-full max-w-sm space-y-4">
+            <div id="login-view" class="space-y-4">
+                <input type="text" id="user-id" placeholder="Tu nombre o correo ✨" class="w-full p-4 rounded-3xl bg-pink-50 border-none outline-none focus:ring-2 ring-pink-300">
+                <input type="password" id="user-pass" placeholder="Tu clave secreta 🔑" class="w-full p-4 rounded-3xl bg-pink-50 border-none outline-none focus:ring-2 ring-pink-300">
+                <button onclick="startApp()" class="w-full btn-kawaii text-lg">¡Entrar a mi mundo!</button>
+                <button onclick="toggleAuth('reg')" class="w-full text-pink-400 font-bold text-sm mt-4">¿Eres nueva? Únete aquí 🌸</button>
+            </div>
+
+            <div id="reg-view" class="hidden space-y-4">
+                <h3 class="font-bold text-pink-500">Formar parte de Protegidas</h3>
+                <input type="text" placeholder="Nombre completo" class="w-full p-4 rounded-3xl bg-purple-50 border-none">
+                <select class="w-full p-4 rounded-3xl bg-purple-50 border-none text-gray-400">
+                    <option>Soy Hija (Estudiante)</option>
+                    <option>Soy Madre (Emprendedora)</option>
+                </select>
+                <button onclick="alert('Registro enviado a validación comunitaria')" class="w-full btn-kawaii">Crear cuenta</button>
+                <button onclick="toggleAuth('login')" class="text-xs opacity-50 underline">Ya tengo cuenta</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-app" class="hidden h-screen flex flex-col">
+        
+        <header class="p-6 flex justify-between items-center bg-white/50 backdrop-blur-md border-b-2 border-pink-100">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-pink-200 rounded-2xl overflow-hidden">
+                    <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=Felicia" alt="Avatar">
+                </div>
+                <div>
+                    <h2 class="font-bold text-sm" id="welcome-name">Hola, Lucía ✨</h2>
+                    <p class="text-[10px] text-green-500 font-bold uppercase tracking-widest">● Nivel de Seguridad: Alto</p>
+                </div>
+            </div>
+            <div class="flex gap-2">
+                <button class="w-10 h-10 bio-pill flex items-center justify-center">🔔</button>
+                <button onclick="location.reload()" class="w-10 h-10 bio-pill flex items-center justify-center">🏠</button>
+            </div>
+        </header>
+
+        <main class="flex-1 overflow-y-auto p-6 space-y-6 pb-28">
+            
+            <section class="kawaii-card p-8 flex flex-col items-center relative">
+                <h3 class="text-sm font-bold text-pink-400 mb-6 uppercase tracking-wider">Mi Estado Protector</h3>
+                
+                <svg viewBox="0 0 200 500" class="h-[300px] avatar-svg">
+                    <circle cx="100" cy="80" r="45" fill="#FFE0E9" stroke="#FFB7CE" stroke-width="4" /> <path d="M60 140 Q100 120 140 140 L150 350 Q100 370 50 350 Z" fill="#E0BBE4" stroke="#D199D9" stroke-width="4" /> <circle cx="100" cy="200" r="8" fill="#FFF" class="pulse-heart" /> <circle cx="100" cy="80" r="10" fill="rgba(255,255,255,0.5)" /> </svg>
+
+                <div class="grid grid-cols-2 gap-4 w-full mt-8">
+                    <div class="bio-pill p-3 text-center">
+                        <p class="text-[10px] opacity-50 uppercase">Asistencia</p>
+                        <p class="font-bold text-pink-500 text-sm">98% ✅</p>
+                    </div>
+                    <div class="bio-pill p-3 text-center">
+                        <p class="text-[10px] opacity-50 uppercase">Bienestar</p>
+                        <p class="font-bold text-purple-500 text-sm">Estable 🌸</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="kawaii-card p-6 bg-gradient-to-r from-blue-50 to-white border-blue-100">
+                <h3 class="font-bold text-blue-400 mb-4 flex items-center gap-2">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path d="M10.394 2.827a1 1 0 00-.788 0l-7 3a1 1 0 000 1.848l7 3a1 1 0 00.788 0l7-3a1 1 0 000-1.848l-7-3zM14 8.828l-.206.088-5.794 2.483-5.794-2.483L2 8.828v2.172a1 1 0 00.553.894l7 3a1 1 0 00.894 0l7-3a1 1 0 00.553-.894V8.828z"/></svg>
+                    Oportunidades para Mamá
+                </h3>
+                <div class="space-y-3">
+                    <div class="bg-white p-3 rounded-2xl border border-blue-100 text-xs shadow-sm">
+                        <p class="font-bold">Taller de Confección Local</p>
+                        <p class="opacity-60 text-[10px]">Vacantes: 3 • Apoyo escolar incluido</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <nav class="fixed bottom-6 left-6 right-6 h-20 glass rounded-[30px] border-2 border-pink-200 flex justify-around items-center px-4">
+            <button class="flex flex-col items-center gap-1">
+                <span class="text-2xl">📖</span>
+                <span class="text-[9px] font-bold opacity-50">ESCUELA</span>
+            </button>
+            <button class="w-14 h-14 bg-pink-400 rounded-full flex items-center justify-center -translate-y-6 shadow-xl shadow-pink-200 border-4 border-white">
+                <span class="text-2xl">🛡️</span>
+            </button>
+            <button class="flex flex-col items-center gap-1">
+                <span class="text-2xl">👩‍👧</span>
+                <span class="text-[9px] font-bold opacity-50">FAMILIA</span>
+            </button>
+        </nav>
+    </div>
+
+    <script>
+        function toggleAuth(view) {
+            document.getElementById('login-view').classList.toggle('hidden', view === 'reg');
+            document.getElementById('reg-view').classList.toggle('hidden', view === 'login');
+        }
+
+        function startApp() {
+            document.getElementById('auth-screen').classList.add('hidden');
+            document.getElementById('main-app').classList.remove('hidden');
+        }
+
+        // Simulación offline-first
+        window.addEventListener('online', () => alert('✨ Sincronizando datos con la nube de Protegidas...'));
+        window.addEventListener('offline', () => console.log('🛡️ Modo Seguro Offline activado automáticamente.'));
+    </script>
+</body>
+</html>
