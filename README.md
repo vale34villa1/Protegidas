@@ -72,5 +72,3 @@ Since this is a **Single-File PWA Prototype**, no complex environment is require
 3. **User Roles:**
    - Girl/Student: Access to Anie and the Fintech module.
    - Ally/Specialist: Access to the clinical monitoring dashboard.
-   ```bash
-   git clone [https://github.com/valeriavillacorta/protegidas-8m.git](https://github.com/valeriavillacorta/protegidas-8m.git)
