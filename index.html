@@ -3,203 +3,316 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PROTEGIDAS | IA contra la explotación infantil</title>
+    <title>PROTEGIDAS | Ecosistema de Bienestar y Protección IA</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Lexend:wght@700;900&display=swap" rel="stylesheet">
     <style>
-        :root { --p-rose: #FF8BA7; --p-violet: #7161EF; --p-dark: #1A1D23; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; background: #FDFBFF; }
+        :root { --p-rose: #FF8BA7; --p-violet: #7161EF; --p-green: #27ae60; --p-dark: #1A1D23; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; background: #FDFBFF; color: var(--p-dark); }
         .lexend { font-family: 'Lexend', sans-serif; }
         
-        /* Animaciones */
+        /* Animaciones de entrada */
         .fade-in { animation: fadeIn 0.8s ease-out forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         
-        /* Glassmorphism */
-        .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.3); }
-        .bento-card { border-radius: 32px; background: white; transition: all 0.3s; border: 1px solid #F0F0F0; }
-        .bento-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        /* Efectos Glass y Bento */
+        .glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.4); }
+        .bento-card { border-radius: 32px; background: white; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border: 1px solid #F0F0F0; }
+        .bento-card:hover { transform: translateY(-8px); box-shadow: 0 30px 60px rgba(113, 97, 239, 0.1); }
 
-        /* Scanner Effect */
-        .scan-line { width: 100%; height: 2px; background: var(--p-rose); position: absolute; animation: scanning 3s infinite linear; filter: blur(2px); }
-        @keyframes scanning { 0% { top: 10%; opacity: 0; } 50% { opacity: 1; } 100% { top: 90%; opacity: 0; } }
+        /* Scanner Radar Effect */
+        .scan-line { width: 100%; height: 3px; background: linear-gradient(90deg, transparent, var(--p-rose), transparent); position: absolute; animation: scanning 4s infinite ease-in-out; filter: blur(1px); z-index: 20; }
+        @keyframes scanning { 0% { top: 0%; opacity: 0; } 50% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: var(--p-rose); border-radius: 10px; }
     </style>
 </head>
 <body class="overflow-x-hidden">
 
     <div id="landing-page" class="relative">
-        <nav class="flex justify-between items-center px-8 md:px-20 py-6 sticky top-0 bg-white/80 backdrop-blur-md z-[50]">
-            <div class="flex items-center gap-2">
-                <div class="w-10 h-10 bg-[#FF8BA7] rounded-xl flex items-center justify-center text-white font-black">P</div>
-                <span class="lexend text-2xl tracking-tighter uppercase">Protegidas</span>
+        <nav class="flex justify-between items-center px-6 md:px-16 py-6 sticky top-0 bg-white/80 backdrop-blur-md z-[50] border-b border-gray-100">
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 bg-gradient-to-br from-[#FF8BA7] to-[#7161EF] rounded-2xl flex items-center justify-center text-white font-black shadow-lg shadow-pink-100">P</div>
+                <span class="lexend text-2xl tracking-tighter uppercase font-black text-slate-800">Protegidas</span>
             </div>
-            <div class="hidden md:flex gap-8 font-semibold text-sm text-gray-500">
-                <a href="#mision" class="hover:text-pink-500">Misión</a>
-                <a href="#tecnologia" class="hover:text-pink-500">Tecnología</a>
-                <a href="#impacto" class="hover:text-pink-500">Impacto</a>
+            <div class="hidden md:flex gap-10 font-bold text-sm text-slate-500">
+                <a href="#mision" class="hover:text-[#FF8BA7] transition">Misión</a>
+                <a href="#tecnologia" class="hover:text-[#FF8BA7] transition">Tecnología</a>
+                <a href="#impacto" class="hover:text-[#FF8BA7] transition">Ecosistema</a>
             </div>
-            <button onclick="showAuth()" class="bg-black text-white px-8 py-3 rounded-full font-bold text-sm hover:scale-105 transition active:scale-95">INICIAR DEMO</button>
+            <button onclick="showAuth()" class="bg-slate-900 text-white px-8 py-3 rounded-full font-bold text-xs tracking-widest hover:bg-[#7161EF] transition-all transform hover:scale-105 active:scale-95 shadow-xl shadow-indigo-100 uppercase">Acceso Especialista</button>
         </nav>
 
-        <header class="px-8 md:px-20 py-20 grid lg:grid-cols-2 gap-12 items-center">
+        <header class="px-6 md:px-16 py-16 grid lg:grid-cols-2 gap-16 items-center">
             <div class="fade-in">
-                <span class="bg-pink-100 text-pink-600 px-4 py-2 rounded-full text-xs font-bold tracking-widest uppercase">Perú • IA Social</span>
-                <h1 class="lexend text-6xl md:text-7xl mt-6 leading-tight">Cuidando el <span class="text-pink-400 italic">futuro</span> de nuestras niñas.</h1>
-                <p class="mt-8 text-xl text-gray-500 leading-relaxed max-w-lg">La primera plataforma que combina biometría preventiva y soporte laboral para erradicar la explotación infantil.</p>
-                <div class="mt-10 flex gap-4">
-                    <button onclick="showAuth()" class="bg-[#7161EF] text-white px-10 py-5 rounded-2xl font-black shadow-xl shadow-indigo-100 hover:bg-indigo-600 transition">EXPLORAR PLATAFORMA</button>
-                    <button class="px-10 py-5 rounded-2xl font-bold border border-gray-200">Ver Misión</button>
+                <div class="inline-flex items-center gap-2 bg-indigo-50 text-[#7161EF] px-5 py-2 rounded-full text-[10px] font-black tracking-[0.2em] uppercase mb-8">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+                    </span>
+                    Amazonía & Rural • IA Predictiva
+                </div>
+                <h1 class="lexend text-6xl md:text-[84px] leading-[0.95] text-slate-900 mb-8">
+                    Cuidando el <span class="text-[#FF8BA7] relative">bienestar<svg class="absolute -bottom-2 left-0 w-full" viewBox="0 0 300 20" fill="none"><path d="M5 15C50 5 150 5 295 15" stroke="#FF8BA7" stroke-width="4" stroke-linecap="round"/></svg></span> invisible.
+                </h1>
+                <p class="text-xl text-slate-500 leading-relaxed max-w-lg mb-12">
+                    Detección temprana de riesgos mediante educación financiera y acompañamiento autónomo para niñas de 6 a 17 años.
+                </p>
+                <div class="flex flex-wrap gap-5">
+                    <button onclick="showAuth()" class="bg-[#7161EF] text-white px-12 py-5 rounded-[24px] font-black text-sm shadow-2xl shadow-indigo-200 hover:scale-105 transition-all">INICIAR PILOTO</button>
+                    <button class="px-10 py-5 rounded-[24px] font-bold border-2 border-slate-100 hover:bg-slate-50 transition-all text-slate-600">Conocer a Anie</button>
                 </div>
             </div>
-            <div class="relative flex justify-center fade-in" style="animation-delay: 0.2s;">
-                <div class="w-full max-w-md aspect-square bg-gradient-to-tr from-pink-200 to-indigo-100 rounded-[60px] flex items-center justify-center shadow-2xl overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?q=80&w=2070&auto=format&fit=crop" class="opacity-80 grayscale hover:grayscale-0 transition duration-1000" alt="Niña estudiando">
+            
+            <div class="relative fade-in" style="animation-delay: 0.3s;">
+                <div class="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-r from-pink-50 to-indigo-50 rounded-full blur-3xl opacity-60"></div>
+                <div class="bento-card p-4 bg-white/40 glass">
+                    <div class="rounded-[40px] overflow-hidden relative group">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#7161EF]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070&auto=format&fit=crop" class="w-full h-[500px] object-cover transition duration-700 group-hover:scale-110" alt="Impacto Social">
+                        <div class="absolute bottom-8 left-8 right-8 p-6 glass rounded-3xl">
+                            <p class="lexend text-white text-lg">"Anie me enseñó a ahorrar para mi primer kit de ciencia."</p>
+                            <p class="text-white/80 text-xs mt-2 font-bold">— Lucía, 12 años (Loreto)</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </header>
 
-        <section id="mision" class="px-8 md:px-20 py-20 bg-gray-50">
-            <h2 class="lexend text-4xl mb-12">Nuestra Estrategia Integral</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bento-card p-10">
-                    <div class="text-4xl mb-4">🛡️</div>
-                    <h3 class="font-bold text-xl mb-3">IA Preventiva</h3>
-                    <p class="text-gray-500 text-sm">Analizamos patrones de asistencia y comportamiento para detectar riesgos de deserción antes de que ocurran.</p>
+        <section id="mision" class="px-6 md:px-16 py-24">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                <div class="max-w-2xl">
+                    <h2 class="lexend text-5xl text-slate-900 mb-6 tracking-tight">Ecosistema de Protección Invisible</h2>
+                    <p class="text-slate-500 text-lg">No somos una app de salud mental convencional. Somos un entorno seguro camuflado en progreso financiero.</p>
                 </div>
-                <div class="bento-card p-10">
-                    <div class="text-4xl mb-4">🧬</div>
-                    <h3 class="font-bold text-xl mb-3">Monitoreo Bio</h3>
-                    <p class="text-gray-500 text-sm">Sistemas de verificación no invasivos que aseguran la presencia y bienestar de la menor en tiempo real.</p>
+                <div class="flex gap-4">
+                    <div class="p-4 bg-white border border-slate-100 rounded-2xl shadow-sm">
+                        <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Estado del Sistema</p>
+                        <p class="text-green-500 font-bold">100% Offline-First</p>
+                    </div>
                 </div>
-                <div class="bento-card p-10">
-                    <div class="text-4xl mb-4">💼</div>
-                    <h3 class="font-bold text-xl mb-3">Bolsa Laboral</h3>
-                    <p class="text-gray-500 text-sm">Conectamos a las madres con empleos dignos y ferias locales para fortalecer la economía familiar.</p>
+            </div>
+
+            <div class="grid md:grid-cols-12 gap-6">
+                <div class="md:col-span-8 bento-card p-12 bg-gradient-to-br from-slate-900 to-slate-800 text-white overflow-hidden relative">
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-2xl mb-8">🤖</div>
+                        <h3 class="lexend text-3xl mb-4">Anie: El Guardián Autónomo</h3>
+                        <p class="text-slate-300 max-w-md leading-relaxed">Un chatbot de IA que se transforma en el animal favorito de la niña para diagnosticar bienestar emocional mediante lenguaje natural y empatía digital.</p>
+                    </div>
+                    <div class="absolute right-[-50px] bottom-[-50px] w-80 h-80 bg-[#7161EF] rounded-full blur-[120px] opacity-40"></div>
+                </div>
+                
+                <div class="md:col-span-4 bento-card p-10 bg-[#FF8BA7] text-white">
+                    <div class="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center text-2xl mb-8">💡</div>
+                    <h3 class="lexend text-2xl mb-4">Lámpara SOS</h3>
+                    <p class="text-white/80 text-sm leading-relaxed">Botón de pánico camuflado para alertas silenciosas a especialistas y redes de confianza en situaciones de riesgo inminente.</p>
+                </div>
+
+                <div class="md:col-span-4 bento-card p-10 border-2 border-slate-50">
+                    <div class="w-14 h-14 bg-indigo-50 text-[#7161EF] rounded-2xl flex items-center justify-center text-2xl mb-8">🏠</div>
+                    <h3 class="lexend text-2xl text-slate-800 mb-4">La Casita</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Módulo Fintech donde el ahorro virtual es el vehículo para empoderar y evaluar la toma de decisiones.</p>
+                </div>
+
+                <div class="md:col-span-8 bento-card p-10 bg-indigo-50 flex items-center justify-between overflow-hidden group">
+                    <div class="max-w-sm">
+                        <h3 class="lexend text-2xl text-indigo-900 mb-4">Esqueleto de Cuidado</h3>
+                        <p class="text-indigo-700/60 text-sm">Visualización biométrica para especialistas que traduce interacciones en indicadores de salud física y emocional.</p>
+                    </div>
+                    <div class="w-40 h-40 bg-white rounded-full flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform">
+                        <svg class="w-24 h-24 text-indigo-200" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"/></svg>
+                    </div>
                 </div>
             </div>
         </section>
     </div>
 
-    <div id="auth-layer" class="fixed inset-0 z-[100] bg-white/90 backdrop-blur-2xl hidden items-center justify-center p-6">
-        <div class="w-full max-w-xl bg-white p-12 rounded-[40px] shadow-2xl border border-pink-50 relative">
-            <button onclick="hideAuth()" class="absolute top-8 right-8 text-gray-300 hover:text-black font-bold">CERRAR</button>
+    <div id="auth-layer" class="fixed inset-0 z-[100] bg-white hidden items-center justify-center p-4">
+        <div class="w-full max-w-xl relative">
+            <button onclick="hideAuth()" class="absolute -top-16 right-0 text-slate-400 hover:text-slate-900 flex items-center gap-2 font-bold tracking-widest text-xs transition">
+                ESC PARA CERRAR <span class="w-8 h-8 flex items-center justify-center border border-slate-200 rounded-full">×</span>
+            </button>
             
-            <div id="login-form">
-                <h3 class="lexend text-3xl mb-2">Bienvenida de nuevo</h3>
-                <p class="text-gray-400 mb-8 font-medium">Accede al portal de protección integral.</p>
+            <div id="login-form" class="bento-card p-12 shadow-2xl border-indigo-100">
+                <div class="w-16 h-16 bg-indigo-50 rounded-3xl flex items-center justify-center text-2xl mb-8">🔑</div>
+                <h3 class="lexend text-4xl mb-4 text-slate-900">Portal Aliados</h3>
+                <p class="text-slate-400 mb-10 text-lg">Acceso exclusivo para Psiquiatras, Psicólogos y Trabajadores Sociales.</p>
+                
                 <div class="space-y-4">
-                    <input type="text" placeholder="ID de Operadora o Email" class="w-full bg-gray-50 p-5 rounded-2xl outline-none focus:ring-2 ring-pink-100 transition">
-                    <input type="password" placeholder="Contraseña de acceso" class="w-full bg-gray-50 p-5 rounded-2xl outline-none focus:ring-2 ring-pink-100 transition">
-                    <button onclick="enterApp()" class="w-full bg-black text-white py-5 rounded-2xl font-black tracking-widest uppercase text-xs">Ingresar al Sistema</button>
-                    <p class="text-center text-sm font-bold text-gray-400 mt-6">¿Aún no eres parte? <button onclick="toggleAuth('reg')" class="text-pink-500 underline">Crea tu perfil aquí</button></p>
+                    <div class="group">
+                        <input type="text" placeholder="Correo institucional" class="w-full bg-slate-50 p-6 rounded-[24px] outline-none border-2 border-transparent focus:border-indigo-100 focus:bg-white transition-all">
+                    </div>
+                    <div class="group">
+                        <input type="password" placeholder="Contraseña de seguridad" class="w-full bg-slate-50 p-6 rounded-[24px] outline-none border-2 border-transparent focus:border-indigo-100 focus:bg-white transition-all">
+                    </div>
+                    <button onclick="enterApp()" class="w-full bg-slate-900 text-white py-6 rounded-[24px] font-black tracking-widest uppercase text-xs hover:bg-[#7161EF] shadow-2xl shadow-indigo-100 transition-all mt-4">Ingresar al Dashboard</button>
+                    <div class="flex justify-between items-center mt-8">
+                        <p class="text-sm text-slate-400">¿Nuevo especialista?</p>
+                        <button onclick="toggleAuth('reg')" class="text-[#FF8BA7] font-bold text-sm underline">Solicitar Credenciales</button>
+                    </div>
                 </div>
             </div>
 
-            <div id="reg-form" class="hidden">
-                <h3 class="lexend text-3xl mb-2">Únete a Protegidas</h3>
-                <p class="text-gray-400 mb-8 font-medium">Inicia el proceso de validación biométrica.</p>
+            <div id="reg-form" class="bento-card p-12 shadow-2xl border-pink-100 hidden">
+                <h3 class="lexend text-4xl mb-2 text-slate-900">Únete a la Red</h3>
+                <p class="text-slate-400 mb-10 font-medium">Postula como aliado en la protección infantil.</p>
                 <div class="space-y-4">
-                    <input type="text" placeholder="Nombre completo" class="w-full bg-gray-50 p-5 rounded-2xl outline-none">
-                    <select class="w-full bg-gray-50 p-5 rounded-2xl outline-none text-gray-400">
-                        <option>Soy Madre / Tutora</option>
-                        <option>Soy Supervisor Regional</option>
+                    <input type="text" placeholder="Nombre completo" class="w-full bg-slate-50 p-6 rounded-[24px] outline-none">
+                    <select class="w-full bg-slate-50 p-6 rounded-[24px] outline-none text-slate-500 appearance-none">
+                        <option>Especialidad: Psiquiatría Infantil</option>
+                        <option>Especialidad: Psicología Clínica</option>
+                        <option>Especialidad: Asistencia Social</option>
                     </select>
-                    <input type="password" placeholder="Definir contraseña fuerte" class="w-full bg-gray-50 p-5 rounded-2xl outline-none">
-                    <button onclick="enterApp()" class="w-full bg-[#FF8BA7] text-white py-5 rounded-2xl font-black uppercase text-xs">Registrarme e Ingresar</button>
-                    <button onclick="toggleAuth('login')" class="w-full text-xs font-bold text-gray-300 mt-4 uppercase">Ya tengo cuenta</button>
+                    <input type="text" placeholder="Número de Colegiatura" class="w-full bg-slate-50 p-6 rounded-[24px] outline-none">
+                    <button onclick="enterApp()" class="w-full bg-[#FF8BA7] text-white py-6 rounded-[24px] font-black uppercase text-xs shadow-xl shadow-pink-100 mt-4">Enviar para Validación</button>
+                    <button onclick="toggleAuth('login')" class="w-full text-xs font-bold text-slate-400 mt-6 uppercase tracking-widest">Ya tengo cuenta</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="app-dashboard" class="fixed inset-0 z-[200] bg-[#F8F9FD] hidden flex-col md:flex-row p-6 gap-6">
-        <aside class="w-full md:w-72 bg-white rounded-[32px] p-8 flex flex-col justify-between shadow-sm border border-gray-100">
+    <div id="app-dashboard" class="fixed inset-0 z-[200] bg-[#F8F9FD] hidden flex-col md:flex-row p-4 md:p-6 gap-6">
+        <aside class="w-full md:w-80 bg-slate-900 rounded-[40px] p-8 flex flex-col justify-between shadow-2xl">
             <div>
-                <div class="flex items-center gap-3 mb-12">
-                    <div class="w-10 h-10 bg-black rounded-xl flex items-center justify-center text-white font-black text-xl italic">P</div>
-                    <span class="lexend text-xl">DASHBOARD</span>
+                <div class="flex items-center gap-4 mb-16">
+                    <div class="w-12 h-12 bg-[#FF8BA7] rounded-2xl flex items-center justify-center text-white font-black text-2xl">P</div>
+                    <div>
+                        <span class="lexend text-white text-xl block leading-none">Aliados</span>
+                        <span class="text-[9px] text-white/40 font-black tracking-[0.2em] uppercase">Protegidas v2.0</span>
+                    </div>
                 </div>
-                <nav class="space-y-2">
-                    <div class="flex items-center gap-4 p-4 bg-pink-50 text-pink-600 rounded-2xl font-bold cursor-pointer transition">
-                        <span>👤 Perfil Menor</span>
+                <nav class="space-y-3">
+                    <div class="flex items-center gap-4 p-5 bg-white/10 text-white rounded-[24px] font-bold cursor-pointer border border-white/5 shadow-lg">
+                        <span class="text-xl">👤</span>
+                        <span class="text-sm">Mis Pacientes</span>
                     </div>
-                    <div class="flex items-center gap-4 p-4 text-gray-400 hover:bg-gray-50 rounded-2xl font-semibold cursor-pointer transition">
-                        <span>📊 Reportes IA</span>
+                    <div class="flex items-center gap-4 p-5 text-white/50 hover:bg-white/5 rounded-[24px] font-semibold cursor-pointer transition">
+                        <span class="text-xl">📊</span>
+                        <span class="text-sm">Alertas IA</span>
                     </div>
-                    <div class="flex items-center gap-4 p-4 text-gray-400 hover:bg-gray-50 rounded-2xl font-semibold cursor-pointer transition">
-                        <span>👩‍💼 Bolsa Madre</span>
+                    <div class="flex items-center gap-4 p-5 text-white/50 hover:bg-white/5 rounded-[24px] font-semibold cursor-pointer transition">
+                        <span class="text-xl">🤝</span>
+                        <span class="text-sm">Comunidad Rural</span>
                     </div>
                 </nav>
             </div>
-            <button onclick="location.reload()" class="flex items-center gap-3 p-4 text-red-400 font-bold hover:bg-red-50 rounded-2xl transition">
-                <span>🚪 Cerrar Sesión</span>
+            <button onclick="location.reload()" class="flex items-center gap-4 p-5 text-rose-400 font-black text-xs uppercase tracking-widest hover:bg-rose-500/10 rounded-[24px] transition">
+                <span>🚪 Salir del Sistema</span>
             </button>
         </aside>
 
-        <main class="flex-1 grid grid-cols-1 lg:grid-cols-3 gap-6 overflow-y-auto">
-            <div class="lg:col-span-2 bento-card p-12 flex flex-col items-center relative overflow-hidden bg-white">
+        <main class="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-6 overflow-y-auto pb-20 md:pb-0">
+            <div class="lg:col-span-8 bento-card p-10 flex flex-col items-center relative overflow-hidden bg-white border-2 border-slate-50">
                 <div class="scan-line"></div>
-                <div class="w-full flex justify-between items-start mb-8 z-10">
+                <div class="w-full flex justify-between items-start mb-12 relative z-10">
                     <div>
-                        <h2 class="lexend text-4xl">Lucía F.</h2>
-                        <span class="text-xs font-black text-green-500 tracking-widest uppercase bg-green-50 px-3 py-1 rounded-full">Protección Activa</span>
+                        <div class="flex items-center gap-3 mb-2">
+                            <h2 class="lexend text-4xl text-slate-800">Lucía F.</h2>
+                            <span class="bg-green-100 text-green-600 text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-tighter">Match 95% (Otorongo)</span>
+                        </div>
+                        <p class="text-slate-400 font-bold flex items-center gap-2">
+                            <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> 
+                            Monitoreo en tiempo real • Loreto, Perú
+                        </p>
                     </div>
-                    <div class="text-right">
-                        <p class="text-sm font-bold text-gray-300 uppercase">Bienestar General</p>
-                        <p class="text-4xl font-black text-pink-400">98%</p>
+                    <div class="bg-indigo-50 p-4 rounded-3xl text-center min-w-[120px]">
+                        <p class="text-[10px] font-black text-indigo-400 uppercase tracking-widest mb-1">Bienestar</p>
+                        <p class="text-4xl font-black text-[#7161EF]">98%</p>
                     </div>
                 </div>
 
-                <svg viewBox="0 0 200 500" class="h-[450px] relative z-10">
-                    <circle cx="100" cy="80" r="45" fill="none" stroke="#FF8BA7" stroke-width="2" />
-                    <path d="M60 130 L140 130 L155 320 L45 320 Z" fill="none" stroke="#FF8BA7" stroke-width="2" />
-                    <path d="M40 140 L20 280 M160 140 L180 280" stroke="#FF8BA7" stroke-width="2" />
-                    <path d="M75 330 L65 480 M125 330 L135 480" stroke="#FF8BA7" stroke-width="2" />
-                    <circle cx="100" cy="80" r="8" fill="#7161EF" class="animate-pulse" />
-                    <circle cx="100" cy="225" r="8" fill="#7161EF" class="animate-pulse" />
-                </svg>
-
-                <div class="grid grid-cols-2 gap-4 w-full mt-10 z-10">
-                    <div class="p-6 border border-gray-100 rounded-3xl bg-gray-50/50">
-                        <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Última Ubicación</p>
-                        <p class="font-bold">Institución Educativa Cusco - 14:30</p>
+                <div class="relative w-full max-w-sm aspect-[3/4] flex items-center justify-center">
+                    <svg viewBox="0 0 200 500" class="h-full w-auto opacity-20 text-[#7161EF]" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="100" cy="80" r="45" />
+                        <path d="M60 130 L140 130 L155 320 L45 320 Z" />
+                        <path d="M40 140 L20 280 M160 140 L180 280" />
+                        <path d="M75 330 L65 480 M125 330 L135 480" />
+                    </svg>
+                    <div class="absolute top-[15%] group cursor-help">
+                        <div class="w-4 h-4 bg-[#7161EF] rounded-full animate-ping absolute"></div>
+                        <div class="w-4 h-4 bg-[#7161EF] rounded-full relative shadow-lg"></div>
+                        <div class="absolute hidden group-hover:block left-6 top-0 glass p-3 rounded-2xl w-48 z-50">
+                            <p class="text-[10px] font-black text-slate-400 uppercase mb-1">Detección Psicológica</p>
+                            <p class="text-xs font-bold text-slate-700">Lenguaje positivo detectado por Anie en el chat diario.</p>
+                        </div>
                     </div>
-                    <div class="p-6 border border-gray-100 rounded-3xl bg-gray-50/50">
-                        <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Riesgo IA</p>
-                        <p class="font-bold text-green-500 uppercase">Sin anomalías detectadas</p>
+                    <div class="absolute top-[45%] left-[40%] group cursor-help">
+                        <div class="w-4 h-4 bg-[#FF8BA7] rounded-full animate-pulse shadow-lg shadow-pink-200"></div>
+                        <div class="absolute hidden group-hover:block left-6 top-0 glass p-3 rounded-2xl w-48 z-50">
+                            <p class="text-[10px] font-black text-slate-400 uppercase mb-1">Actividad Física</p>
+                            <p class="text-xs font-bold text-slate-700">Nivel de energía óptimo basado en misiones de ahorro.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4 w-full mt-12 relative z-10">
+                    <div class="p-5 border border-slate-100 rounded-3xl bg-slate-50/50">
+                        <p class="text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2">Comportamiento</p>
+                        <p class="font-bold text-slate-700">Resiliencia Alta</p>
+                    </div>
+                    <div class="p-5 border border-slate-100 rounded-3xl bg-slate-50/50">
+                        <p class="text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2">Salud Física</p>
+                        <p class="font-bold text-slate-700">Nutrición Adecuada</p>
+                    </div>
+                    <div class="p-5 border border-slate-100 rounded-3xl bg-slate-900 text-white col-span-2 md:col-span-1">
+                        <p class="text-[9px] font-black text-white/40 uppercase tracking-[0.2em] mb-2">Próxima Sesión</p>
+                        <p class="font-bold">Mañana 10:00 AM</p>
                     </div>
                 </div>
             </div>
 
-            <div class="flex flex-col gap-6">
-                <div class="bento-card p-8 bg-[#7161EF] text-white flex-1 flex flex-col">
-                    <h3 class="lexend text-2xl mb-6">Mamá Impulso</h3>
-                    <div class="flex items-center gap-4 mb-8">
-                        <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center text-2xl font-bold">MF</div>
-                        <div>
-                            <p class="font-black">Martha Fernández</p>
-                            <p class="text-xs opacity-70 italic">Madre Beneficiaria</p>
+            <div class="lg:col-span-4 flex flex-col gap-6">
+                <div class="bento-card p-8 bg-[#7161EF] text-white flex-1 relative overflow-hidden group">
+                    <div class="relative z-10">
+                        <h3 class="lexend text-2xl mb-8 flex items-center gap-3">
+                            La Casita <span class="text-xs bg-white/20 px-3 py-1 rounded-full font-bold">Nivel 4</span>
+                        </h3>
+                        <div class="space-y-6">
+                            <div class="bg-white/10 p-5 rounded-3xl border border-white/10">
+                                <p class="text-[10px] font-black opacity-60 mb-2 uppercase tracking-widest">Semillas Ahorradas</p>
+                                <div class="flex items-end gap-2">
+                                    <span class="text-4xl font-black">1,240</span>
+                                    <span class="text-sm font-bold opacity-70 mb-1">puntos</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-xl shadow-lg">🎒</div>
+                                <div>
+                                    <p class="font-bold text-sm">Próximo Objetivo</p>
+                                    <p class="text-xs opacity-60 italic">Útiles escolares para el ciclo 2026</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="bg-white/10 p-5 rounded-2xl border border-white/10 mb-6">
-                        <p class="text-xs font-bold opacity-60 mb-1 tracking-widest uppercase">Microcrédito Actual</p>
-                        <p class="text-2xl font-black">S/ 450.00</p>
-                        <p class="text-[10px] opacity-50 mt-2">Próxima capacitación: Confección Textil (Mañana)</p>
-                    </div>
-                    <button class="mt-auto w-full py-4 bg-white text-[#7161EF] rounded-2xl font-black uppercase text-xs">Explorar Bolsa Laboral</button>
+                    <svg class="absolute -right-10 -bottom-10 w-48 h-48 text-white/5 transform group-hover:rotate-12 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3L2 12h3v8h14v-8h3L12 3zm0 2.84L18.16 11H17v7H7v-7H5.84L12 5.84zM10 13h4v2h-4v-2z"/></svg>
                 </div>
 
-                <div class="bento-card p-8 flex flex-col">
-                    <h3 class="text-sm font-black text-gray-300 uppercase tracking-widest mb-6 italic">IA Technical Status</h3>
+                <div class="bento-card p-8 bg-white border-2 border-slate-50">
+                    <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-6">Red de Confianza</h3>
                     <div class="space-y-4">
-                        <div class="flex justify-between items-center text-sm font-semibold">
-                            <span>Offline Cloud Sync</span>
-                            <span class="text-green-500">100%</span>
+                        <div class="flex items-center justify-between p-4 bg-slate-50 rounded-[24px]">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center text-sm">👩</div>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-700">Martha (Madre)</p>
+                                    <p class="text-[10px] text-green-500 font-black uppercase">Verificada</p>
+                                </div>
+                            </div>
+                            <span class="text-xs font-black text-slate-300">#001</span>
                         </div>
-                        <div class="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden">
-                            <div class="bg-green-500 h-full w-[100%]"></div>
+                        <div class="flex items-center justify-between p-4 bg-slate-50 rounded-[24px]">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center text-sm">🏫</div>
+                                <div>
+                                    <p class="text-sm font-bold text-slate-700">Prof. Juan C.</p>
+                                    <p class="text-[10px] text-slate-400 font-black uppercase">Enlace Escolar</p>
+                                </div>
+                            </div>
                         </div>
-                        <p class="text-[10px] text-gray-400 leading-tight">La plataforma está operando en modo Offline-First. Todos los datos están protegidos localmente.</p>
                     </div>
                 </div>
             </div>
@@ -209,10 +322,12 @@
     <script>
         function showAuth() {
             document.getElementById('auth-layer').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
         }
 
         function hideAuth() {
             document.getElementById('auth-layer').style.display = 'none';
+            document.body.style.overflow = 'auto';
         }
 
         function toggleAuth(view) {
@@ -221,16 +336,26 @@
         }
 
         function enterApp() {
-            document.getElementById('auth-layer').classList.add('hidden');
-            document.getElementById('landing-page').classList.add('hidden');
-            document.getElementById('app-dashboard').classList.remove('hidden');
-            document.getElementById('app-dashboard').classList.add('flex');
+            // Animación de transición suave
+            const auth = document.getElementById('auth-layer');
+            auth.style.opacity = '0';
+            auth.style.transition = 'opacity 0.5s ease';
+            
+            setTimeout(() => {
+                auth.classList.add('hidden');
+                document.getElementById('landing-page').classList.add('hidden');
+                const dash = document.getElementById('app-dashboard');
+                dash.classList.remove('hidden');
+                dash.classList.add('flex');
+            }, 500);
         }
 
-        // Simular efecto de carga en la demo
-        window.onload = () => {
-            console.log("PROTEGIDAS™ System initialized.");
-        };
+        // Cerrar con tecla ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape") hideAuth();
+        });
+
+        console.log("PROTEGIDAS™ Health Fintech System - Initialized 2026");
     </script>
 </body>
 </html>
