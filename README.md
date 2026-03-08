@@ -1,15 +1,15 @@
-# 🛡️ PROTEGIDAS | AI-Driven Ecosystem for Rural Child Welfare
+# 🛡️PROTEGIDAS | AI-Driven Ecosystem for Rural Child Welfare
 **PROTEGIDAS** is a high-fidelity digital sanctuary engineered to mitigate systemic vulnerabilities for girls aged 6 to 17 in rural and Amazonian regions of Peru. Developed for the **8M Builder Journey**, it camouflages complex psychiatric triage within a gamified financial literacy ecosystem.
 
 ---
 
-## 👁️ The Vision (8M Impact)
+## The Vision (8M Impact)
 In remote contexts where mental health services are stigmatized, **PROTEGIDAS** acts as a silent vanguard. 
 * **Empowerment through Agency:** Breaking the cycle of poverty by fostering financial decision-making ("La Casita").
 * **Stealth Intervention:** Using "Anie" (an AI proxy) to detect risks without compromising the user's safety in hostile environments.
 * **Geographic Equity:** Optimized for low-end devices and zero-connectivity (Offline-First).
 
-## 🚀 Core Functionalities
+## Core Functionalities
 
 ### 1. Anie: Empathetic AI Proxy
 An interactive chatbot that adapts its persona to the user's favorite animal. It uses **Natural Language Processing (NLP)** to identify:
@@ -27,7 +27,7 @@ A gamified module where virtual "seeds" represent savings. This serves as a prox
 
 ---
 
-## 🛠️ Technical Stack
+## Technical Stack
 
 | Layer | Technology |
 | :--- | :--- |
@@ -44,7 +44,7 @@ graph LR
     C -->|Normal| D[La Casita: Fintech Gamification]
     C -->|Warning| E[Specialist Dashboard: Wellness Skeleton]
     E -->|Silent SOS| F[Human Intervention Network]
-## 👩‍💻 The Core Team (Project 8M)
+## The Core Team (Project 8M)
 
 We are a multidisciplinary team of 4 women committed to closing the gender gap through technology and social engineering.
 
@@ -60,7 +60,7 @@ We are a multidisciplinary team of 4 women committed to closing the gender gap t
 Developed with a focus on social engineering and gender equality. Dedicated to the girls of the Peruvian Amazon who are building the future today.
 "Empowering the invisible through technology that listens."
 
-## 📦 Installation & Setup
+## Installation & Setup
 Since this is a **Single-File PWA Prototype**, no complex environment is required.
 1. **Clone the repo:**
    ```bash
