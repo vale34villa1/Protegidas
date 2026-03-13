@@ -72,17 +72,17 @@ Since this is a **Single-File PWA Prototype**, no complex environment is require
 3. **User Roles:**
    - Girl/Student: Access to Anie and the Fintech module.
    - Ally/Specialist: Access to the clinical monitoring dashboard.
-4. **Estructura del proyecto:**
-El proyecto está organizado de forma modular para separar la interfaz de usuario, la lógica de la Inteligencia Artificial y la internacionalización.
+4. **Project structure:**
+The project is organized in a modular way to separate the user interface, the Artificial Intelligence logic, and internationalization.
 
 ```text
-protegidas-app/
-├── index.html          # Interfaz de usuario (Bento Grid + Tailwind)
-├── main.js             # Motor de carga de idiomas y lógica del Agente
-├── agent.config.json   # Configuración técnica de "Anie" (IA)
-├── install.sh          # Script de automatización de entorno
-└── lang/               # Diccionarios de internacionalización (i18n)
-    ├── es.json         # Español
-    ├── en.json         # Inglés
+protected-app/
+├── index.html          # User interface (Bento Grid + Tailwind)
+├── main.js             # Language loading engine and Agent logic
+├── agent.config.json   # Technical configuration of “Anie” (AI)
+├── install.sh          # Environment automation script
+└── lang/               # Internationalization dictionaries (i18n)
+    ├── es.json         # Spanish
+    ├── en.json         # English
     ├── qu.json         # Quechua (Collao/Cusco)
     └── ay.json         # Aymara
