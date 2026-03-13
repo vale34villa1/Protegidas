@@ -72,3 +72,14 @@ Since this is a **Single-File PWA Prototype**, no complex environment is require
 3. **User Roles:**
    - Girl/Student: Access to Anie and the Fintech module.
    - Ally/Specialist: Access to the clinical monitoring dashboard.
+4. **Estructura:**
+protegidas-app/
+├── index.html          # La interfaz de la página web integrada la app
+├── main.js             # Lógica central e integración de IA
+├── agent.config.json   # Configuración técnica del Agente (Anie)
+├── install.sh          # Script de despliegue/automatización
+└── lang/               # Diccionarios de idiomas
+    ├── es.json
+    ├── en.json
+    ├── qu.json
+    └── ay.json
