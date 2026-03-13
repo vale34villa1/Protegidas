@@ -55,7 +55,7 @@ We are a multidisciplinary team of 4 women committed to closing the gender gap t
 | **Valeria Villacorta Landeo** | Project Lead / CEO | Industrial Engineering | [valeria.villacorta04@gmail.com](mailto:valeria.villacorta04@gmail.com) |
 | **Melany Arleth Hancco Alcahuamán** | Economic Strategist | Economics | [melany.hancco29@gmail.com](mailto:melany.hancco29@gmail.com) |
 | **Meri Rosario Alvarez Salazar** | *Growth Product Strategist* | *Mining Engineering* | [meryrosarioas@gmail.com](mailto:meryrosarioas@gmail.com) |
-| **[Nombre 4]** | *To be updated* | *To be updated* | *To be updated* |
+| **Milagros Araceli Peceros** | *Web developer* | *System engineer* | [milarapeceros@gmail.com](milarapeceros@gmail.com) |
 
 > **Note:** We are currently consolidating our diverse expertise in Industrial Engineering and Economics to ensure **PROTEGIDAS** is not just a tool, but a scalable social infrastructure for the Peruvian Amazon.
 ## Acknowledgments
@@ -72,14 +72,17 @@ Since this is a **Single-File PWA Prototype**, no complex environment is require
 3. **User Roles:**
    - Girl/Student: Access to Anie and the Fintech module.
    - Ally/Specialist: Access to the clinical monitoring dashboard.
-4. **Estructura:**
+4. **Estructura del proyecto:**
+El proyecto está organizado de forma modular para separar la interfaz de usuario, la lógica de la Inteligencia Artificial y la internacionalización.
+
+```text
 protegidas-app/
-├── index.html          # La interfaz de la página web integrada la app
-├── main.js             # Lógica central e integración de IA
-├── agent.config.json   # Configuración técnica del Agente (Anie)
-├── install.sh          # Script de despliegue/automatización
-└── lang/               # Diccionarios de idiomas
-    ├── es.json
-    ├── en.json
-    ├── qu.json
-    └── ay.json
+├── index.html          # Interfaz de usuario (Bento Grid + Tailwind)
+├── main.js             # Motor de carga de idiomas y lógica del Agente
+├── agent.config.json   # Configuración técnica de "Anie" (IA)
+├── install.sh          # Script de automatización de entorno
+└── lang/               # Diccionarios de internacionalización (i18n)
+    ├── es.json         # Español
+    ├── en.json         # Inglés
+    ├── qu.json         # Quechua (Collao/Cusco)
+    └── ay.json         # Aymara
